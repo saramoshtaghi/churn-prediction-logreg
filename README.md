@@ -94,7 +94,7 @@ We evaluate both models using:
 ---
 
 ## 📩 Contributing
-Feel free to submit PRs or open issues. For discussions, reach out via **your_email@example.com**.
+Feel free to submit PRs or open issues. For discussions, reach out via **sarahmoshtaq@gmail.com**.
 
 ---
 

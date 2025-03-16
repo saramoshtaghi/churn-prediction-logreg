@@ -1,81 +1,107 @@
-# README.md
+# Customer Churn Prediction Project
 
-# Churn Prediction using Logistic Regression
+## 📌 Project Overview
+This project focuses on predicting customer churn using Logistic Regression. It includes two versions:
+1. **Without SMOTE** - The model is trained on the original imbalanced dataset.
+2. **With SMOTE** - The model is trained using SMOTE (Synthetic Minority Over-sampling Technique) to balance the dataset.
 
-## Overview
-This project implements a logistic regression model to predict customer churn. The model is trained using a structured dataset and evaluated with multiple decision thresholds to optimize performance. Additionally, **SMOTE (Synthetic Minority Over-sampling Technique)** is used to balance the dataset, improving model performance and robustness.
+Both versions allow for threshold tuning to optimize recall and precision.
 
-## Project Structure
+---
+
+## 📂 Folder Structure
 ```
-churn-prediction-logreg/
-│── src/
-│   ├── train.py          # Training and model saving script
-│   ├── evaluation.py     # Evaluation script with multiple thresholds
-│
-│── models/
-│   ├── logistic_regression_model.pkl  # Trained model
-│   ├── scaler.pkl                     # StandardScaler object
-│
-│── data/
-│   ├── dataset.csv       # Dataset (Not included in repo, add manually)
-│
-│── notebooks/            # Jupyter notebooks (if used for analysis)
-│
-│── docs/                 # Documentation files
-│
-│── requirements.txt       # Required dependencies
-│── README.md              # Project documentation
-│── LICENSE                # MIT License
-│── .gitignore             # Ignore unnecessary files
+/customer_churn_project/
+│── /models/                 # Saved trained models
+│   ├── logistic_regression_no_smot.pkl
+│   ├── logistic_regression_with_smot.pkl
+│   ├── scaler_no_smot.pkl
+│   ├── scaler_with_smot.pkl
+│── /src/                    # Source code for training and evaluation
+│   ├── train_no_smot.py      # Training script without SMOTE
+│   ├── train_with_smot.py    # Training script with SMOTE
+│   ├── evaluate_model.py     # Evaluation script
+│── /data/                    # Dataset storage
+│   ├── customer_churn.csv    # Raw dataset
+│── README.md                 # Project documentation
 ```
 
-## Features
-- **Preprocessing**: Standardization of features.
-- **Training**: Logistic regression using `sklearn`.
-- **Data Balancing**: **SMOTE applied** to handle class imbalance.
-- **Evaluation**:
-  - Accuracy, Confusion Matrix, and Classification Report.
-  - ROC Curve and AUC Score.
-  - Different decision thresholds (default: 0.3, 0.5, 0.7).
-  - Comparison of performance with and without SMOTE.
+---
 
-## Setup & Installation
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/YOUR_GITHUB_USERNAME/churn-prediction-logreg.git
-   cd churn-prediction-logreg
-   ```
-2. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. **Add dataset**: Place `dataset.csv` inside the `data/` folder.
+## 🚀 Installation & Setup
 
-## Usage
-### **Train the model**
-Run the training script to preprocess data, train the model, and save it.
+### **1️⃣ Clone the Repository**
 ```bash
-python src/train.py
+git clone https://github.com/your-username/customer_churn_project.git
+cd customer_churn_project
 ```
-### **Evaluate the model**
-Run the evaluation script to test different decision thresholds.
+
+### **2️⃣ Install Dependencies**
 ```bash
-python src/evaluation.py
+pip install -r requirements.txt
 ```
 
-## Adjusting Decision Thresholds
-Modify the `thresholds` list in `evaluation.py` to test different values:
-```python
-thresholds = [0.2, 0.4, 0.6, 0.8]  # Example thresholds
+### **3️⃣ Train the Model**
+#### **Without SMOTE**
+```bash
+python src/train_no_smot.py
+```
+#### **With SMOTE**
+```bash
+python src/train_with_smot.py
 ```
 
-## Output
-- **`models/logistic_regression_model.pkl`** → Trained model
-- **`models/scaler.pkl`** → Scaler object
-- **Evaluation metrics and ROC curve plots**
-- **Performance comparison with and without SMOTE**
+### **4️⃣ Evaluate the Model**
+```bash
+python src/evaluate_model.py
+```
 
-## License
-This project is licensed under the **MIT License**. See the LICENSE file for details.
+---
 
+## 🔍 Model Training Details
+- **`train_no_smot.py`**: Trains a Logistic Regression model on the original dataset.
+- **`train_with_smot.py`**: Applies SMOTE to balance the dataset before training.
+- **Hyperparameters:** C=1.0, solver='liblinear'
+- **Feature Scaling:** StandardScaler applied to numeric features.
+- **Decision Threshold Adjustment:** Threshold tuning for optimizing Precision vs. Recall.
+
+---
+
+## 📊 Model Evaluation
+We evaluate both models using:
+- **Accuracy**
+- **Precision, Recall, F1-score**
+- **ROC-AUC Curve**
+- **Confusion Matrix Analysis**
+
+### **Compare Performance**
+| Model | Precision | Recall | F1-score |
+|--------|------------|---------|----------|
+| No SMOTE | High Precision, Low Recall | More False Negatives | Balanced |
+| With SMOTE | Lower Precision, Higher Recall | Captures More Churners | Higher Recall |
+
+**Choosing the Model:**
+- If you care more about **capturing churners**, use **With SMOTE** (higher recall).
+- If you want fewer **false churn alerts**, use **Without SMOTE** (higher precision).
+
+---
+
+## 🔥 Next Steps
+- [ ] Experiment with **other models** (Random Forest, XGBoost).
+- [ ] Tune **decision thresholds dynamically**.
+- [ ] Deploy as a **Flask API or Streamlit app**.
+
+---
+
+## 📩 Contributing
+Feel free to submit PRs or open issues. For discussions, reach out via **your_email@example.com**.
+
+---
+
+## 📜 License
+This project is open-source under the MIT License. See **LICENSE** for details.
+
+---
+
+**🚀 Happy Coding!**
 

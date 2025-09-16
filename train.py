@@ -9,7 +9,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, roc_auc_score, roc_curve
 
 # Load dataset
-csv_file = "/content/sample_data/Customer Churn.csv"  # Adjust if filename differs
+csv_file = "data/processed/telecom_churn_processed.csv"  # Adjust if filename differs
 df = pd.read_csv(csv_file)
 
 target_variable = "Churn"  # Ensure this is the correct column name
